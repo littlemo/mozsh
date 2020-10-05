@@ -82,10 +82,32 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git history history-substring-search autojump autopep8 celery common-aliases docker docker-compose emacs fabric github gitignore gulp iterm2 node npm pyenv python sublime virtualenv virtualenvwrapper cp web-search last-working-dir catimg encode64 urltools wd)
 plugins=(
-    git git-extras last-working-dir wd history history-substring-search
+    last-working-dir wd history history-substring-search
     common-aliases gitignore iterm2 python
     github docker docker-compose
     zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
+
+
+# 使用 zplug 插件管理器，该插件使用 homebrew 安装
+source ~/.zplug/init.zsh
+
+# 安装 git 相关插件
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/git-extras",   from:oh-my-zsh
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+# zplug 插件管理器配置完毕
+
 
 # User configuration
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
