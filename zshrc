@@ -1,3 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export GITSTATUS_LOG_LEVEL=DEBUG
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/moore/.oh-my-zsh
 
@@ -6,37 +15,30 @@ export ZSH=/Users/moore/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="amuse"
-ZSH_THEME="bullet-train"
+# ZSH_THEME="bullet-train"
 #ZSH_THEME="spaceship"
 #ZSH_THEME="random"
 
 # 为 bullet-train 主题配置提示符顺序&样式
-BULLETTRAIN_PROMPT_ORDER=(
-    time
-    status
-    custom
-    screen
-    # perl
-    # ruby
-    virtualenv
-    nvm
-    # aws
-    # go
-    # rust
-    # elixir
-    git
-    # hg
-    dir
-    cmd_exec_time
-)
-BULLETTRAIN_VIRTUALENV_BG=black
-
-# 为 spaceship 主题配置提示符顺序&样式
-# SPACESHIP_PROMPT_ORDER=(
-#     time dir git venv pyenv node jobs exec_time exit_code line_sep char)
-# SPACESHIP_TIME_SHOW="true"
-# SPACESHIP_TIME_PREFIX=""
-# SPACESHIP_PROMPT_PREFIXES_SHOW="false"
+# BULLETTRAIN_PROMPT_ORDER=(
+#     time
+#     status
+#     custom
+#     # screen
+#     # perl
+#     # ruby
+#     virtualenv
+#     # nvm
+#     # aws
+#     # go
+#     # rust
+#     # elixir
+#     git
+#     # hg
+#     dir
+#     cmd_exec_time
+# )
+# BULLETTRAIN_VIRTUALENV_BG=black
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -92,8 +94,11 @@ plugins=(
 source ~/.zplug/init.zsh
 
 # 安装 git 相关插件
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/git-extras",   from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh, if:'which git'
+zplug "plugins/git-extras", from:oh-my-zsh, if:'which git'
+
+# 主题相关
+zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -198,3 +203,6 @@ export PATH="$PATH:/Users/moore/.local/bin"
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
