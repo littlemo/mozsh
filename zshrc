@@ -84,10 +84,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git history history-substring-search autojump autopep8 celery common-aliases docker docker-compose emacs fabric github gitignore gulp iterm2 node npm pyenv python sublime virtualenv virtualenvwrapper cp web-search last-working-dir catimg encode64 urltools wd)
 plugins=(
-    last-working-dir wd history history-substring-search
+    last-working-dir wd history
     common-aliases iterm2 python
-    github docker docker-compose
-    zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
+    github docker docker-compose)
 
 
 # 使用 zplug 插件管理器，该插件使用 homebrew 安装
@@ -101,8 +100,14 @@ zplug "plugins/gitignore", from:oh-my-zsh, if:'which git'
 # 常用工具相关插件
 zplug "plugins/z", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "plugins/safe-paste", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/pre-directory-history", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
 
 # 主题相关
 zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
@@ -119,7 +124,6 @@ fi
 zplug load
 
 # zplug 插件管理器配置完毕
-
 
 # User configuration
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
