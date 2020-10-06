@@ -85,7 +85,7 @@ HIST_STAMPS="yyyy-mm-dd"
 #plugins=(git history history-substring-search autojump autopep8 celery common-aliases docker docker-compose emacs fabric github gitignore gulp iterm2 node npm pyenv python sublime virtualenv virtualenvwrapper cp web-search last-working-dir catimg encode64 urltools wd)
 plugins=(
     last-working-dir wd history history-substring-search
-    common-aliases gitignore iterm2 python
+    common-aliases iterm2 python
     github docker docker-compose
     zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
 
@@ -96,6 +96,13 @@ source ~/.zplug/init.zsh
 # 安装 git 相关插件
 zplug "plugins/git", from:oh-my-zsh, if:'which git'
 zplug "plugins/git-extras", from:oh-my-zsh, if:'which git'
+zplug "plugins/gitignore", from:oh-my-zsh, if:'which git'
+
+# 常用工具相关插件
+zplug "plugins/z", from:oh-my-zsh
+zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/extract", from:oh-my-zsh
+zplug "plugins/zsh_reload", from:oh-my-zsh
 
 # 主题相关
 zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
@@ -195,7 +202,7 @@ eval "$(pipenv --completion)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+# [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 # Created by `userpath` on 2020-09-07 09:44:23
 export PATH="$PATH:/Users/moore/.local/bin"
