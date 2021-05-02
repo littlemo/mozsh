@@ -208,6 +208,10 @@ export PATH="$PATH:/Users/moore/.local/bin"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# icu4c
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
