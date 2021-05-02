@@ -85,7 +85,7 @@ HIST_STAMPS="yyyy-mm-dd"
 #plugins=(git history history-substring-search autojump autopep8 celery common-aliases docker docker-compose emacs fabric github gitignore gulp iterm2 node npm pyenv python sublime virtualenv virtualenvwrapper cp web-search last-working-dir catimg encode64 urltools wd)
 plugins=(
     last-working-dir wd history
-    common-aliases iterm2 python
+    common-aliases python
     github docker docker-compose)
 
 
@@ -183,9 +183,6 @@ export HOMEBREW_GITHUB_API_TOKEN="94f0d6c7383ed9fe819582b2af42144764d170ec"
 # LC_ALL="C"
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-
-# 应用iterm2的shell集成设置
-source ~/.oh-my-zsh/custom/.iterm2_shell_integration.`basename $SHELL`
 
 # 设置virtualenvwrapper环境
 export WORKON_HOME=/Volumes/Develop/.virtualenvs
