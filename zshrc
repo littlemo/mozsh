@@ -194,9 +194,6 @@ export GPG_TTY=$(tty)
 # added by travis gem
 [ -f /Users/moore/.travis/travis.sh ] && source /Users/moore/.travis/travis.sh
 
-# 开启 pipenv 的补全提示
-eval "$(pipenv --completion)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
@@ -208,14 +205,33 @@ export PATH="$PATH:/Users/moore/.local/bin"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # icu4c
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
+###########
+# 命令补全
+###########
+
 autoload -U bashcompinit
 bashcompinit
+
+# pipx
 eval "$(register-python-argcomplete pipx)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# 开启 pipenv 的补全提示
+eval "$(pipenv --completion)"
+
+# zsh 补全
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# 开启 k8s 命令自动补全
+source <(kubectl completion zsh)
+
+# git-extras 命令补全
 source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
