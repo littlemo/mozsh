@@ -204,6 +204,10 @@ eval "$(pipenv --completion)"
 # Created by `userpath` on 2020-09-07 09:44:23
 export PATH="$PATH:/Users/moore/.local/bin"
 
+# jenv 初始化
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
