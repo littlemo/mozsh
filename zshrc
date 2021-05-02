@@ -94,7 +94,6 @@ source ~/.zplug/init.zsh
 
 # 安装 git 相关插件
 zplug "plugins/git", from:oh-my-zsh, if:'which git'
-zplug "plugins/git-extras", from:oh-my-zsh, if:'which git'
 zplug "plugins/gitignore", from:oh-my-zsh, if:'which git'
 
 # 常用工具相关插件
@@ -108,9 +107,6 @@ zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/pre-directory-history", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
-
-# 主题相关
-zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -217,3 +213,4 @@ eval "$(register-python-argcomplete pipx)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
