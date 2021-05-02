@@ -107,6 +107,7 @@ zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/pre-directory-history", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "djui/alias-tips"  # 别名提醒
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
