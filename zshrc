@@ -177,8 +177,7 @@ alias wcf='ls -l | grep "^-" | wc -l'
 alias wcdr='ls -lR | grep "^d" | wc -l'
 alias wcfr='ls -lR | grep "^-" | wc -l'
 
-# Homebrew的Github API Token
-export HOMEBREW_GITHUB_API_TOKEN="94f0d6c7383ed9fe819582b2af42144764d170ec"
+source ~/.token
 
 # Fix: SSH远程登录Server时的warning: Falling back to the standard locale ("C").错误
 # LC_ALL="C"
