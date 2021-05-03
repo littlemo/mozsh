@@ -177,6 +177,8 @@ alias wcf='ls -l | grep "^-" | wc -l'
 alias wcdr='ls -lR | grep "^d" | wc -l'
 alias wcfr='ls -lR | grep "^-" | wc -l'
 
+alias ra='ranger'
+
 source ~/.token
 
 # Fix: SSH远程登录Server时的warning: Falling back to the standard locale ("C").错误
