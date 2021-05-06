@@ -212,5 +212,9 @@ setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 # }}}
+# 插件配置: autojump {{{
+# -----------------
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# }}}
 
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
