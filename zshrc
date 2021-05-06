@@ -205,4 +205,12 @@ source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 
 # }}}
 
+# hstr 插件配置 {{{
+# -------------
+alias hh=hstr                    # hh to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+# }}}
+
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
