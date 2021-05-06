@@ -132,6 +132,8 @@ source $(brew --prefix)/opt/zinit/zinit.zsh
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 zinit light djui/alias-tips  # 别名提醒
+
+# 模糊搜索
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
