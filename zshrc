@@ -133,9 +133,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 zinit light djui/alias-tips  # 别名提醒
 
-# 模糊搜索
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # }}}
 # User configuration {{{
 # ------------------
@@ -205,7 +202,11 @@ source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 
 # }}}
 
-# hstr 插件配置 {{{
+# 插件配置: fzf {{{
+# --------------------
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# }}}
+# 插件配置: hstr {{{
 # -------------
 alias hh=hstr                    # hh to be alias for hstr
 setopt histignorespace           # skip cmds w/ leading space from history
