@@ -1,3 +1,5 @@
+# 初始化命令提示符 {{{
+# ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,40 +7,51 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export GITSTATUS_LOG_LEVEL=DEBUG
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# }}}
+# Env {{{
+# ---
+
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/go/bin"
+#export MANPATH="/usr/local/man:$MANPATH"
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/moore/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="amuse"
-# ZSH_THEME="bullet-train"
-#ZSH_THEME="spaceship"
-#ZSH_THEME="random"
+export GPG_TTY=$(tty)
 
-# 为 bullet-train 主题配置提示符顺序&样式
-# BULLETTRAIN_PROMPT_ORDER=(
-#     time
-#     status
-#     custom
-#     # screen
-#     # perl
-#     # ruby
-#     virtualenv
-#     # nvm
-#     # aws
-#     # go
-#     # rust
-#     # elixir
-#     git
-#     # hg
-#     dir
-#     cmd_exec_time
-# )
-# BULLETTRAIN_VIRTUALENV_BG=black
+# }}}
+# Init Module {{{
+# -----------
+source ~/.token
+source $ZSH/oh-my-zsh.sh
+# }}}
+# Misc {{{
+# ----
+
+# Fix: SSH远程登录Server时的warning: Falling back to the standard locale ("C").错误
+# LC_ALL="C"
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -78,73 +91,53 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# }}}
+# 插件管理 {{{
+# --------
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git history history-substring-search autojump autopep8 celery common-aliases docker docker-compose emacs fabric github gitignore gulp iterm2 node npm pyenv python sublime virtualenv virtualenvwrapper cp web-search last-working-dir catimg encode64 urltools wd)
 plugins=(
-    last-working-dir wd history
+    wd history
     common-aliases python
-    github docker docker-compose)
+    z cp extract zsh_reload safe-paste colored-man-pages
+    last-working-dir tmux
+    git gitignore github)
 
+# zplug "zsh-users/zsh-autosuggestions"
+# zplug "zsh-users/zsh-syntax-highlighting"
+# zplug "djui/alias-tips"  # 别名提醒
 
-# 使用 zplug 插件管理器，该插件使用 homebrew 安装
-source ~/.zplug/init.zsh
+source $(brew --prefix)/opt/zinit/zinit.zsh
 
-# 安装 git 相关插件
-zplug "plugins/git", from:oh-my-zsh, if:'which git'
-zplug "plugins/gitignore", from:oh-my-zsh, if:'which git'
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+zinit light djui/alias-tips  # 别名提醒
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# 常用工具相关插件
-zplug "plugins/z", from:oh-my-zsh
-zplug "plugins/cp", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/extract", from:oh-my-zsh
-zplug "plugins/zsh_reload", from:oh-my-zsh
-zplug "plugins/safe-paste", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/pre-directory-history", from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "djui/alias-tips"  # 别名提醒
+# }}}
+# User configuration {{{
+# ------------------
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
 
-# Then, source plugins and add commands to $PATH
-zplug load
+# virtualenvwrapper虚拟环境 {{{
+export WORKON_HOME=/Volumes/Develop/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
+# source /usr/local/bin/virtualenvwrapper.sh
+# }}}
 
-# zplug 插件管理器配置完毕
+# added by travis gem
+# [ -f /Users/moore/.travis/travis.sh ] && source /Users/moore/.travis/travis.sh
 
-# User configuration
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
+# [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
-#export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/go/bin"
-#export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# }}}
+# Alias {{{
+# -----
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -155,18 +148,8 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# some more ls aliases
-# alias ll='ls -alFh'
-# alias la='ls -Ah'
-# alias l='ls -CFh'
-
-# source ~/.completion/.git-completion.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-# 用ec来快速启动emacs client
-alias ec='env TERM=xterm emacsclient -t -a ""'
-
 alias vim='/usr/local/bin/vim'
+alias ra='ranger'
 
 # 设置默认编辑器
 export EDITOR='nvim'
@@ -177,37 +160,33 @@ alias wcf='ls -l | grep "^-" | wc -l'
 alias wcdr='ls -lR | grep "^d" | wc -l'
 alias wcfr='ls -lR | grep "^-" | wc -l'
 
-alias ra='ranger'
+# }}}
+# 命令补全 {{{
+# --------
 
-source ~/.token
-
-# Fix: SSH远程登录Server时的warning: Falling back to the standard locale ("C").错误
-# LC_ALL="C"
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
-# 设置virtualenvwrapper环境
-export WORKON_HOME=/Volumes/Develop/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
-source /usr/local/bin/virtualenvwrapper.sh
-
-export GPG_TTY=$(tty)
-
-# added by travis gem
-[ -f /Users/moore/.travis/travis.sh ] && source /Users/moore/.travis/travis.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+autoload -Uz compinit
+compinit
 
 # jenv 初始化
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+# pipx
+eval "$(register-python-argcomplete pipx)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# 开启 pipenv 的补全提示
+# eval "$(pipenv --completion)"
 
-autoload -U bashcompinit
-bashcompinit
+# zsh 补全
+fpath=(/usr/local/share/zsh-completions $fpath)
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# 开启 k8s 命令自动补全
+# source <(kubectl completion zsh)
+
+# git-extras 命令补全
+source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
+
+# }}}
+
+# vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

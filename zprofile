@@ -51,22 +51,3 @@ fi
 
 # Created by `userpath` on 2020-09-07 09:44:23
 export PATH="$PATH:/Users/moore/.local/bin"
-
-###########
-# 命令补全
-###########
-
-# pipx
-eval "$(register-python-argcomplete pipx)"
-
-# 开启 pipenv 的补全提示
-eval "$(pipenv --completion)"
-
-# zsh 补全
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-# 开启 k8s 命令自动补全
-source <(kubectl completion zsh)
-
-# git-extras 命令补全
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
