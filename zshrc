@@ -166,6 +166,7 @@ export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ls='exa'  # 用exa替换ls命令
 alias vim='/usr/local/bin/vim'
 alias ra='ranger'
 
