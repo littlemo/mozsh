@@ -1,6 +1,3 @@
 [submodule "oh_my_zsh"]
 	path = oh_my_zsh
 	url = ../../ohmyzsh/ohmyzsh.git
-[submodule "zplug"]
-	path = zplug
-	url = ../../zplug/zplug.git
