@@ -1,4 +1,5 @@
-# 初始化命令提示符 {{{
+# 初始化 {{{
+# 主题 {{{
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -13,7 +14,7 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # }}}
-# Env {{{
+# 环境变量 {{{
 # ---
 
 #export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/go/bin"
@@ -38,7 +39,7 @@ export ZSH=/Users/moore/.oh-my-zsh
 export GPG_TTY=$(tty)
 
 # }}}
-# Init Module {{{
+# 模块 {{{
 # -----------
 source ~/.token
 source $ZSH/oh-my-zsh.sh
@@ -59,6 +60,8 @@ else
 	compinit -C;
 fi;
 # }}}
+# }}}
+
 # Misc {{{
 # ----
 
@@ -200,23 +203,20 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # git-extras 命令补全
 source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
-
 # }}}
 
-# 插件配置: fzf {{{
-# --------------------
+# 插件配置 {{{
+# fzf {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # }}}
-# 插件配置: hstr {{{
-# -------------
+# hstr {{{
 alias hh=hstr                    # hh to be alias for hstr
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 # }}}
-# 插件配置: autojump {{{
-# -----------------
+# autojump {{{
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # }}}
-
+# }}}
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet foldlevel=0:
