@@ -114,6 +114,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # 插件管理 {{{
 # --------
 
+source $(brew --prefix)/opt/zinit/zinit.zsh
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -126,11 +128,17 @@ plugins=(
     last-working-dir tmux
     git gitignore github)
 
-# zplug "zsh-users/zsh-autosuggestions"
-# zplug "zsh-users/zsh-syntax-highlighting"
-# zplug "djui/alias-tips"  # 别名提醒
-
-source $(brew --prefix)/opt/zinit/zinit.zsh
+zinit snippet OMZP::wd
+zinit snippet OMZP::history
+zinit snippet OMZP::common-aliases
+zinit snippet OMZP::cp
+zinit snippet OMZP::safe-paste
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::last-working-dir
+zinit snippet OMZP::tmux
+zinit snippet OMZP::git
+zinit snippet OMZP::gitignore
+zinit snippet OMZP::github
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
