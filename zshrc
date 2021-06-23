@@ -178,6 +178,8 @@ alias ls='exa'  # 用exa替换ls命令
 alias cat='bat'  # 用bat替换cat命令
 alias vim='/usr/local/bin/vim'
 alias ra='ranger'
+alias lg='lazygit'
+alias vi='nvim'
 
 # 设置默认编辑器
 export EDITOR='nvim'
