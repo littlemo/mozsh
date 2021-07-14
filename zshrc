@@ -150,6 +150,9 @@ zinit light djui/alias-tips  # 别名提醒
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
 
+# 高亮最长字符限制，避免粘贴长文本过慢
+export ZSH_HIGHLIGHT_MAXLENGTH=60
+
 # virtualenvwrapper虚拟环境 {{{
 export WORKON_HOME=/Volumes/Develop/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
