@@ -194,6 +194,9 @@ alias wcf='ls -l | grep "^-" | wc -l'
 alias wcdr='ls -lR | grep "^d" | wc -l'
 alias wcfr='ls -lR | grep "^-" | wc -l'
 
+# 快速打开收藏的服务列表
+alias b="cat ~/handfile/.runtime/favorites_url | fzf --height 40% --layout reverse --info inline --border | awk '{print \"open\", \$1}' | sh"
+
 # }}}
 # 命令补全 {{{
 # --------
@@ -218,12 +221,6 @@ source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 # 插件配置 {{{
 # fzf {{{
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# }}}
-# hstr {{{
-alias hh=hstr                    # hh to be alias for hstr
-setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 # }}}
 # autojump {{{
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
