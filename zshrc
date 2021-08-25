@@ -198,10 +198,6 @@ alias wcfr='ls -lR | grep "^-" | wc -l'
 # 命令补全 {{{
 # --------
 
-# jenv 初始化
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
-
 # pipx
 eval "$(register-python-argcomplete pipx)"
 
