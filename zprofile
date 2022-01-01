@@ -30,11 +30,6 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
-# 设置pyenv环境
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # gettext 路径
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
@@ -55,3 +50,6 @@ eval "$(jenv init -)"
 
 # Created by `userpath` on 2020-09-07 09:44:23
 export PATH="$PATH:/Users/moore/.local/bin"
+
+# 设置pyenv环境
+eval "$(pyenv init --path)"
