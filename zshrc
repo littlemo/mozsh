@@ -225,5 +225,21 @@ source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 # autojump {{{
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # }}}
+# percol {{{
+function exists { which $1 &> /dev/null }
+
+if exists percol; then
+    function percol_select_history() {
+        local tac
+        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
+# }}}
 # }}}
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet foldlevel=0:
