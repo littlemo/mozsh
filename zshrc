@@ -222,9 +222,6 @@ source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 # }}}
 
 # 插件配置 {{{
-# fzf {{{
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# }}}
 # autojump {{{
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # }}}
