@@ -41,6 +41,9 @@ export ZSH=/Users/moore/.oh-my-zsh
 
 export GPG_TTY=$(tty)
 
+# neovide
+. "$HOME/.cargo/env"
+
 # }}}
 # 模块 {{{
 # -----------
