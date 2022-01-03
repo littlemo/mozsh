@@ -44,6 +44,17 @@ export GPG_TTY=$(tty)
 # neovide
 . "$HOME/.cargo/env"
 
+# npm
+case ":${PATH}:" in
+    *:"$HOME/.node_modules/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.node_modules/bin:$PATH"
+        ;;
+esac
+
+
 # }}}
 # 模块 {{{
 # -----------
