@@ -13,9 +13,6 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# 初始化 pyenv
-eval "$(pyenv init -)"
-
 # }}}
 # 环境变量 {{{
 # ---
@@ -256,5 +253,10 @@ if exists percol; then
     bindkey '^R' percol_select_history
 fi
 # }}}
+# direnv {{{
+eval "$(direnv hook zsh)"
+# }}}
+# pyenv {{{
+eval "$(pyenv init -)"
 # }}}
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet foldlevel=0:
