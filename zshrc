@@ -198,7 +198,7 @@ alias vim='/usr/local/bin/vim'
 alias ra='ranger'
 alias lg='lazygit'
 alias vi='nvim'
-alias nvim-gui='neovide'
+alias gnvim='neovide'
 
 # 设置默认编辑器
 export EDITOR='nvim'
