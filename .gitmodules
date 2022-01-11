@@ -1,3 +1,4 @@
 [submodule "oh_my_zsh"]
 	path = oh_my_zsh
 	url = ../../ohmyzsh/ohmyzsh.git
+	ignore = dirty
