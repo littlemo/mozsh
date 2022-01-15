@@ -198,7 +198,7 @@ alias vim='/usr/local/bin/vim'
 alias ra='ranger'
 alias lg='lazygit'
 alias v='nvim'
-alias gv='neovide'
+alias gv='~/Develop/test/nvui-macos-x64/bin/nvui --ext_multigrid=true --ext_popupmenu=true --ext_cmdline=true --detached'
 
 # 设置默认编辑器
 export EDITOR='nvim'
