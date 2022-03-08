@@ -199,8 +199,8 @@ alias ra='ranger'
 alias lg='lazygit'
 alias v='nvim'
 alias gv='~/Develop/test/nvui-macos-x64/bin/nvui --ext_multigrid=true --ext_popupmenu=true --ext_cmdline=true --detached'
-alias proxy="export all_proxy=http://127.0.0.1:1087"
-alias unproxy="unset all_proxy"
+alias proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
+alias unproxy="unset http_proxy https_proxy ALL_PROXY"
 
 # 设置默认编辑器
 export EDITOR='nvim'
