@@ -201,7 +201,7 @@ alias vim='/usr/local/bin/vim'
 alias ra='ranger'
 alias lg='lazygit'
 alias v='nvim'
-alias gv='~/Develop/test/nvui-macos-x64/bin/nvui --ext_multigrid=true --ext_popupmenu=true --ext_cmdline=true --detached'
+alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
 alias proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unproxy="unset http_proxy https_proxy ALL_PROXY"
 
