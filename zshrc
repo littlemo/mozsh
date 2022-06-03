@@ -171,7 +171,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray'
 export ZSH_HIGHLIGHT_MAXLENGTH=60
 
 # virtualenvwrapper虚拟环境 {{{
-export WORKON_HOME=/Volumes/Develop/.virtualenvs
+export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
 # source /usr/local/bin/virtualenvwrapper.sh
 # }}}
