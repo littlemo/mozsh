@@ -139,7 +139,7 @@ plugins=(
     wd history
     common-aliases python
     z cp extract zsh_reload safe-paste colored-man-pages
-    last-working-dir tmux
+    last-working-dir
     git gitignore github)
 
 zinit snippet OMZP::wd
@@ -149,7 +149,6 @@ zinit snippet OMZP::cp
 zinit snippet OMZP::safe-paste
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::last-working-dir
-zinit snippet OMZP::tmux
 zinit snippet OMZP::git
 zinit snippet OMZP::gitignore
 zinit snippet OMZP::github
