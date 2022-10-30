@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # 初始化 {{{
 # 主题 {{{
 # ----------------
@@ -265,6 +262,3 @@ eval "$(direnv hook zsh)"
 eval "$(pyenv init -)"
 # }}}
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet foldlevel=0:
-
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
