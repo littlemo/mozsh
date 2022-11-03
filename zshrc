@@ -200,6 +200,7 @@ alias v='nvim'
 alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
 alias proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unproxy="unset http_proxy https_proxy ALL_PROXY"
+alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 
 # 设置默认编辑器
 export EDITOR='nvim'
