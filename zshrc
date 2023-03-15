@@ -198,8 +198,8 @@ alias ra='ranger'
 alias lg='lazygit'
 alias v='nvim'
 alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
-alias proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
-alias unproxy="unset http_proxy https_proxy ALL_PROXY"
+# alias proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080"
+# alias unproxy="unset http_proxy https_proxy ALL_PROXY"
 alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 
 # 设置默认编辑器
@@ -213,6 +213,33 @@ alias wcfr='ls -lR | grep "^-" | wc -l'
 
 # 快速打开收藏的服务列表
 alias b="cat ~/handfile/.runtime/favorites_url | fzf --height 40% --layout reverse --info inline --border | awk '{print \"open\", \$1}' | sh"
+
+proxy_ioa () {
+	export all_proxy="http://172.16.146.131:808"
+	echo "iOA Proxy on"
+}
+
+# v2ray 没有请忽略
+proxy () {
+	# export http_proxy="http://127.0.0.1:1087"
+	# export https_proxy=$http_proxy
+	# export socks_proxy="socks5://127.0.0.1:1080"
+	export all_proxy="socks5://127.0.0.1:1080"
+	echo "HTTP Proxy v2ray on"
+}
+
+proxy_yidu () {
+	export all_proxy="http://172.16.96.1:8123"
+	echo "HTTP Proxy yidu on"
+}
+
+unproxy () {
+	unset http_proxy
+	unset https_proxy
+	unset socks_proxy
+	unset all_proxy
+	echo "Proxy off"
+}
 
 # }}}
 # 命令补全 {{{
