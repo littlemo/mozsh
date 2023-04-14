@@ -221,9 +221,9 @@ proxy_ioa () {
 
 # v2ray 没有请忽略
 proxy () {
-	# export http_proxy="http://127.0.0.1:1087"
-	# export https_proxy=$http_proxy
-	# export socks_proxy="socks5://127.0.0.1:1080"
+	export http_proxy="http://127.0.0.1:1087"
+	export https_proxy=$http_proxy
+	export socks_proxy="socks5://127.0.0.1:1080"
 	export all_proxy="socks5://127.0.0.1:1080"
 	echo "HTTP Proxy v2ray on"
 }
