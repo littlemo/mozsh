@@ -215,7 +215,9 @@ alias wcfr='ls -lR | grep "^-" | wc -l'
 alias b="cat ~/handfile/.runtime/favorites_url | fzf --height 40% --layout reverse --info inline --border | awk '{print \"open\", \$1}' | sh"
 
 proxy_ioa () {
-	export all_proxy="http://172.16.146.131:808"
+	export http_proxy="http://10.42.1.20:1087"
+	export https_proxy=$http_proxy
+	export all_proxy=$http_proxy
 	echo "iOA Proxy on"
 }
 
@@ -223,8 +225,11 @@ proxy_ioa () {
 proxy () {
 	export http_proxy="http://127.0.0.1:1087"
 	export https_proxy=$http_proxy
+	export HTTP_PROXY=$http_proxy
+	export HTTPS_PROXY=$http_proxy
 	export socks_proxy="socks5://127.0.0.1:1080"
-	export all_proxy="socks5://127.0.0.1:1080"
+	export SOCKS_PROXY="socks5://127.0.0.1:1080"
+	# export all_proxy="socks5://127.0.0.1:1080"
 	echo "HTTP Proxy v2ray on"
 }
 
@@ -237,6 +242,9 @@ unproxy () {
 	unset http_proxy
 	unset https_proxy
 	unset socks_proxy
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+	unset SOCKS_PROXY
 	unset all_proxy
 	echo "Proxy off"
 }
