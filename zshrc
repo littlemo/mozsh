@@ -231,12 +231,12 @@ proxy () {
 }
 
 proxy_v2raya () {
-	export http_proxy="http://10.42.1.14:20171"
+	export http_proxy="http://10.42.1.18:20171"
 	export https_proxy=$http_proxy
 	export HTTP_PROXY=$http_proxy
 	export HTTPS_PROXY=$http_proxy
-	export socks_proxy="socks5://10.42.1.14:20170"
-	export SOCKS_PROXY="socks5://10.42.1.14:20170"
+	export socks_proxy="socks5://10.42.1.18:20170"
+	export SOCKS_PROXY=$socks_proxy
 	echo "HTTP Proxy v2raya on"
 }
 
