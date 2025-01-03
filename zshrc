@@ -191,7 +191,6 @@ alias ls='exa'  # 用exa替换ls命令
 alias la='l -a'
 alias cat='bat'  # 用bat替换cat命令
 alias vim='/usr/local/bin/vim'
-alias ra='ranger'
 alias lg='lazygit'
 alias v='nvim'
 alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
@@ -254,6 +253,15 @@ unproxy () {
 	unset SOCKS_PROXY
 	unset all_proxy
 	echo "Proxy off"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 # }}}
