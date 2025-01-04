@@ -240,7 +240,11 @@ proxy_v2raya () {
 }
 
 proxy_yidu () {
-	export all_proxy="http://172.16.96.1:8123"
+	export all_proxy="http://10.42.1.20:1087"
+	export http_proxy="http://10.42.1.20:1087"
+	export https_proxy=$http_proxy
+	export HTTP_PROXY=$http_proxy
+	export HTTPS_PROXY=$http_proxy
 	echo "HTTP Proxy yidu on"
 }
 
