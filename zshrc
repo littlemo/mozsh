@@ -272,9 +272,6 @@ function y() {
 # 命令补全 {{{
 # --------
 
-# pipx
-eval "$(register-python-argcomplete pipx)"
-
 # 开启 pipenv 的补全提示
 # eval "$(pipenv --completion)"
 
