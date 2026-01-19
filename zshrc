@@ -198,6 +198,16 @@ alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
 # alias unproxy="unset http_proxy https_proxy ALL_PROXY"
 alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 
+# Claude code
+# 豆包多模态模型
+alias ccdbm='ANTHROPIC_MODEL="doubao-seed-1-8-251228" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+# 豆包编码模型
+alias ccdbc='ANTHROPIC_MODEL="doubao-seed-code-preview-251028" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+# DeepSeek 3.2
+alias ccds='ANTHROPIC_MODEL="deepseek-v3-2-251201" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+# GLM
+alias ccglm='ANTHROPIC_MODEL="glm-4-7-251222" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+
 # 设置默认编辑器
 export EDITOR='nvim'
 
