@@ -199,14 +199,16 @@ alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
 alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 
 # Claude code
+# 通用 api-key 439afee2-0ae1-418d-9376-f5e245d5a019
+# 科研 api-key b4ab719b-8a69-4aa4-9107-4e6eaccc3956
 # 豆包多模态模型
-alias ccdoubaomulti='ANTHROPIC_MODEL="doubao-seed-1-8-251228" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+alias ccdoubaomulti='ANTHROPIC_MODEL="doubao-seed-1-8-251228" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # 豆包编码模型
-alias ccdoubaocode='ANTHROPIC_MODEL="doubao-seed-code-preview-251028" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+alias ccdoubaocode='ANTHROPIC_MODEL="doubao-seed-code-preview-251028" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # DeepSeek 3.2
-alias ccdeepseek='ANTHROPIC_MODEL="deepseek-v3-2-251201" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+alias ccdeepseek='ANTHROPIC_MODEL="deepseek-v3-2-251201" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # GLM
-alias ccglm='ANTHROPIC_MODEL="glm-4-7-251222" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="439afee2-0ae1-418d-9376-f5e245d5a019" claude'
+alias ccglm='ANTHROPIC_MODEL="glm-4-7-251222" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 
 # 设置默认编辑器
 export EDITOR='nvim'
