@@ -327,3 +327,12 @@ eval "$(direnv hook zsh)"
 eval "$(pyenv init -)"
 # }}}
 # vim: set foldmethod=marker ts=2 sw=2 tw=80 noet foldlevel=0:
+
+# bun completions
+[ -s "/Users/moore/.bun/_bun" ] && source "/Users/moore/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude-mem='/Users/moore/.bun/bin/bun "/Users/moore/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
