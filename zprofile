@@ -10,6 +10,8 @@ function _pip_completion {
 compctl -K _pip_completion pip
 # pip zsh completion end
 
+# eval "$(brew shellenv zsh)"
+
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/go/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -33,7 +35,7 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 # 键盘固件刷写工具
-export PATH="$PATH:/Users/moore/Downloads/tkg-toolkit-master/mac/bin"
+# export PATH="$PATH:/Users/moore/Downloads/tkg-toolkit-master/mac/bin"
 
 # handfile 的萌萌哒模式
 export HANDFILE_MMD_MODE=1
@@ -49,6 +51,3 @@ fi
 
 # Created by `userpath` on 2020-09-07 09:44:23
 export PATH="$PATH:/Users/moore/.local/bin"
-
-# 设置pyenv环境
-eval "$(pyenv init --path)"

@@ -1,5 +1,7 @@
 # 初始化 {{{
 # 主题 {{{
+eval "$(brew shellenv zsh)"
+
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -8,7 +10,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -187,7 +189,7 @@ export VIRTUALENVWRAPPER_PYTHON=/Users/moore/.pyenv/shims/python3
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ls='exa'  # 用exa替换ls命令
+alias ls='eza'  # 用eza替换ls命令
 alias la='l -a'
 alias cat='bat'  # 用bat替换cat命令
 alias vim='/usr/local/bin/vim'
@@ -295,7 +297,7 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 # source <(kubectl completion zsh)
 
 # git-extras 命令补全
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
+source $(brew --prefix)/share/git-extras/git-extras-completion.zsh
 # }}}
 
 # 插件配置 {{{
