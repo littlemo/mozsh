@@ -207,7 +207,7 @@ alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 # 豆包多模态模型
 alias ccdoubaomulti='ANTHROPIC_MODEL="doubao-seed-1-8-251228" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # 豆包编码模型
-alias ccdoubaocode='ANTHROPIC_MODEL="doubao-seed-code-preview-251028" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
+alias ccdoubaocode='ANTHROPIC_MODEL="doubao-seed-2-0-code-preview-260215" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # DeepSeek 3.2
 alias ccdeepseek='ANTHROPIC_MODEL="deepseek-v3-2-251201" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
 # GLM
