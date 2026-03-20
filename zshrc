@@ -2,20 +2,6 @@
 # 主题 {{{
 eval "$(brew shellenv zsh)"
 
-# 默认使用豆包编码模型（仅当前 session 生效）
-export ANTHROPIC_MODEL="doubao-seed-2-0-code-preview-260215"
-export ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible"
-export ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956"
-
-# 模型名称映射（用于提示符显示）
-typeset -gA _MODEL_DISPLAY_NAMES
-_MODEL_DISPLAY_NAMES=(
-  ["doubao-seed-1-8-251228"]="doubao-multi"
-  ["doubao-seed-2-0-code-preview-260215"]="doubao-code"
-  ["deepseek-v3-2-251201"]="deepseek"
-  ["glm-4-7-251222"]="glm"
-)
-
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
