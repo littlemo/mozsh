@@ -1,6 +1,12 @@
 # 初始化 {{{
 # 主题 {{{
-eval "$(brew shellenv zsh)"
+# brew shellenv 缓存：避免每次启动都执行 brew shellenv（约 2 秒）
+_brew_shellenv_cache="$HOME/.cache/brew-shellenv.zsh"
+if [[ ! -f "$_brew_shellenv_cache" || "$_brew_shellenv_cache" -ot "$(brew --prefix)/bin/brew" ]]; then
+  brew shellenv zsh > "$_brew_shellenv_cache"
+fi
+source "$_brew_shellenv_cache"
+unset _brew_shellenv_cache
 
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
