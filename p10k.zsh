@@ -103,6 +103,7 @@
     newline                 # \n
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
+    claude_model          # Claude Code model (custom segment)
     proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
     # wifi                  # wifi speed
@@ -1563,6 +1564,25 @@
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  # Claude Code Model prompt segment.
+  function prompt_claude_model() {
+    if [[ -n "$ANTHROPIC_MODEL" ]]; then
+      local -A display_names
+      display_names=(
+        ["doubao-seed-1-8-251228"]="doubao-multi"
+        ["doubao-seed-2-0-code-preview-260215"]="doubao-code"
+        ["deepseek-v3-2-251201"]="deepseek"
+        ["glm-4-7-251222"]="glm"
+      )
+      local model="${display_names[$ANTHROPIC_MODEL]:-$ANTHROPIC_MODEL}"
+      p10k segment -f 39 -i '🤖' -t "$model"
+    fi
+  }
+
+  function instant_prompt_claude_model() {
+    prompt_claude_model
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:

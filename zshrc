@@ -2,6 +2,20 @@
 # 主题 {{{
 eval "$(brew shellenv zsh)"
 
+# 默认使用豆包编码模型（仅当前 session 生效）
+export ANTHROPIC_MODEL="doubao-seed-2-0-code-preview-260215"
+export ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible"
+export ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956"
+
+# 模型名称映射（用于提示符显示）
+typeset -gA _MODEL_DISPLAY_NAMES
+_MODEL_DISPLAY_NAMES=(
+  ["doubao-seed-1-8-251228"]="doubao-multi"
+  ["doubao-seed-2-0-code-preview-260215"]="doubao-code"
+  ["deepseek-v3-2-251201"]="deepseek"
+  ["glm-4-7-251222"]="glm"
+)
+
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -204,14 +218,86 @@ alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 # Claude code
 # 通用 api-key 439afee2-0ae1-418d-9376-f5e245d5a019
 # 科研 api-key b4ab719b-8a69-4aa4-9107-4e6eaccc3956
-# 豆包多模态模型
-alias ccdoubaomulti='ANTHROPIC_MODEL="doubao-seed-1-8-251228" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
-# 豆包编码模型
-alias ccdoubaocode='ANTHROPIC_MODEL="doubao-seed-2-0-code-preview-260215" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
-# DeepSeek 3.2
-alias ccdeepseek='ANTHROPIC_MODEL="deepseek-v3-2-251201" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
-# GLM
-alias ccglm='ANTHROPIC_MODEL="glm-4-7-251222" ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible" ANTHROPIC_AUTH_TOKEN="b4ab719b-8a69-4aa4-9107-4e6eaccc3956" claude'
+
+# 模型配置定义
+typeset -A _claude_models
+_claude_models=(
+  ["doubaomulti"]="doubao-seed-1-8-251228"
+  ["doubaocode"]="doubao-seed-2-0-code-preview-260215"
+  ["deepseek"]="deepseek-v3-2-251201"
+  ["glm"]="glm-4-7-251222"
+)
+_claude_base_url="https://ark.cn-beijing.volces.com/api/compatible"
+_claude_auth_token="b4ab719b-8a69-4aa4-9107-4e6eaccc3956"
+
+# Claude Code Model 配置切换主命令（仅当前 session 生效）
+ccm() {
+  case "$1" in
+    doubaomulti)
+      export ANTHROPIC_MODEL="$_claude_models[doubaomulti]"
+      export ANTHROPIC_BASE_URL="$_claude_base_url"
+      export ANTHROPIC_AUTH_TOKEN="$_claude_auth_token"
+      echo "✅ 已切换模型: doubao-multi (仅当前 session 生效)"
+      ;;
+    doubaocode)
+      export ANTHROPIC_MODEL="$_claude_models[doubaocode]"
+      export ANTHROPIC_BASE_URL="$_claude_base_url"
+      export ANTHROPIC_AUTH_TOKEN="$_claude_auth_token"
+      echo "✅ 已切换模型: doubao-code (仅当前 session 生效)"
+      ;;
+    deepseek)
+      export ANTHROPIC_MODEL="$_claude_models[deepseek]"
+      export ANTHROPIC_BASE_URL="$_claude_base_url"
+      export ANTHROPIC_AUTH_TOKEN="$_claude_auth_token"
+      echo "✅ 已切换模型: deepseek (仅当前 session 生效)"
+      ;;
+    glm)
+      export ANTHROPIC_MODEL="$_claude_models[glm]"
+      export ANTHROPIC_BASE_URL="$_claude_base_url"
+      export ANTHROPIC_AUTH_TOKEN="$_claude_auth_token"
+      echo "✅ 已切换模型: glm (仅当前 session 生效)"
+      ;;
+    clear)
+      unset ANTHROPIC_MODEL
+      unset ANTHROPIC_BASE_URL
+      unset ANTHROPIC_AUTH_TOKEN
+      echo "✅ Claude 配置已清除"
+      ;;
+    list)
+      echo "可用模型:"
+      echo "  doubaomulti - 豆包多模态模型"
+      echo "  doubaocode  - 豆包编码模型 (默认)"
+      echo "  deepseek    - DeepSeek 3.2"
+      echo "  glm         - GLM 4.7"
+      echo "  clear       - 清除配置"
+      echo "  list        - 显示此列表"
+      if [[ -n "$ANTHROPIC_MODEL" ]]; then
+        echo ""
+        echo "当前模型: ${_MODEL_DISPLAY_NAMES[$ANTHROPIC_MODEL]:-$ANTHROPIC_MODEL}"
+      fi
+      ;;
+    "")
+      if [[ -n "$ANTHROPIC_MODEL" ]]; then
+        echo "当前模型: ${_MODEL_DISPLAY_NAMES[$ANTHROPIC_MODEL]:-$ANTHROPIC_MODEL}"
+      else
+        echo "未设置模型，使用 'ccm list' 查看可用模型"
+      fi
+      ;;
+    *)
+      echo "未知参数: $1"
+      echo "使用 'ccm list' 查看可用模型"
+      return 1
+      ;;
+  esac
+}
+
+# ccm 命令补全
+_ccm_completions() {
+  local -a options
+  options=('doubaomulti:豆包多模态模型' 'doubaocode:豆包编码模型' 'deepseek:DeepSeek 3.2' 'glm:GLM 4.7' 'clear:清除配置' 'list:列出可用模型')
+  _describe 'command' options
+}
+compdef _ccm_completions ccm
 
 # 设置默认编辑器
 export EDITOR='nvim'
