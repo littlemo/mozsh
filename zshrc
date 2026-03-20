@@ -409,6 +409,13 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias claude-mem='/Users/moore/.bun/bin/bun "/Users/moore/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+
+# NVM 延迟加载 - 只在首次使用 nvm 命令时加载完整功能
+# node/npm 等已通过 zshenv 加入 PATH，可直接使用
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+_lazy_load_nvm() {
+  unset -f nvm
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+}
+nvm() { _lazy_load_nvm; nvm "$@"; }

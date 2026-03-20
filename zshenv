@@ -4,11 +4,10 @@ fi
 
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-# NVM 初始化 - 确保非交互式 shell (如 neovim) 也能找到 node
+# NVM - 非交互环境快速配置（不加载 nvm.sh）
+# 直接使用最新 Node 版本，确保非交互环境也能找到 node
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# 使用与交互式 shell 一致的 node 版本
-nvm use v16.19.1 > /dev/null 2>&1
+export PATH="$NVM_DIR/versions/node/v25.8.1/bin:$PATH"
 
 # Claude 模型配置 - 确保非交互式 shell 也能生效
 export ANTHROPIC_MODEL="doubao-seed-2-0-code-preview-260215"
@@ -23,4 +22,3 @@ _MODEL_DISPLAY_NAMES=(
   ["deepseek-v3-2-251201"]="deepseek"
   ["glm-4-7-251222"]="glm"
 )
-
