@@ -425,3 +425,82 @@ _lazy_load_nvm() {
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 }
 nvm() { _lazy_load_nvm; nvm "$@"; }
+
+# Convert Markdown to GitHub-style HTML
+md2gh() {
+  local OPEN_BROWSER=false
+  local HTML_FILE=""
+  local MD_FILE=""
+
+  # Parse command line options
+  while getopts ":bo:" opt; do
+    case $opt in
+      b)
+        OPEN_BROWSER=true
+        ;;
+      o)
+        HTML_FILE="$OPTARG"
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        echo "Usage: md2gh [-b] [-o output.html] <file.md>"
+        return 1
+        ;;
+      :)
+        echo "Option -$OPTARG requires an argument." >&2
+        echo "Usage: md2gh [-b] [-o output.html] <file.md>"
+        return 1
+        ;;
+    esac
+  done
+
+  # Shift past the processed options
+  shift $((OPTIND - 1))
+
+  # Get the markdown file
+  MD_FILE="$1"
+  if [ -z "$MD_FILE" ]; then
+    echo "Usage: md2gh [-b] [-o output.html] <file.md>"
+    echo ""
+    echo "Options:"
+    echo "  -b          Open HTML file in browser after conversion"
+    echo "  -o <file>   Specify output HTML file path (default: <input>.html)"
+    return 1
+  fi
+
+  if [ ! -f "$MD_FILE" ]; then
+    echo "Error: File '$MD_FILE' not found"
+    return 1
+  fi
+
+  # Set default HTML file if not specified
+  if [ -z "$HTML_FILE" ]; then
+    HTML_FILE="${MD_FILE%.md}.html"
+  fi
+
+  TITLE=$(basename "$MD_FILE" .md)
+
+  echo "Converting $MD_FILE to $HTML_FILE..."
+
+  pandoc "$MD_FILE" -o "$HTML_FILE" \
+    -c "https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css" \
+    -c "https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" \
+    -s \
+    --metadata title="$TITLE"
+
+  # Add GitHub style body wrapper
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' 's/<body>/<body class="markdown-body" style="max-width: 980px; margin: 0 auto; padding: 45px;">/' "$HTML_FILE" 2>/dev/null
+  else
+    sed -i 's/<body>/<body class="markdown-body" style="max-width: 980px; margin: 0 auto; padding: 45px;">/' "$HTML_FILE" 2>/dev/null
+  fi
+
+  echo "Generated $HTML_FILE"
+
+  # Open in browser if requested
+  if $OPEN_BROWSER; then
+    echo "Opening $HTML_FILE..."
+    open "$HTML_FILE"
+  fi
+}
+
