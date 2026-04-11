@@ -2,11 +2,21 @@
 # 主题 {{{
 # brew shellenv 缓存：避免每次启动都执行 brew shellenv（约 2 秒）
 _brew_shellenv_cache="$HOME/.cache/brew-shellenv.zsh"
-if [[ ! -f "$_brew_shellenv_cache" || "$_brew_shellenv_cache" -ot "$(brew --prefix)/bin/brew" ]]; then
-  brew shellenv zsh > "$_brew_shellenv_cache"
+# 直接使用 brew 的标准路径，避免鸡生蛋问题（Apple Silicon: /opt/homebrew, Intel: /usr/local）
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  _brew_bin="/opt/homebrew/bin/brew"
+elif [[ -f /usr/local/bin/brew ]]; then
+  _brew_bin="/usr/local/bin/brew"
+else
+  _brew_bin=""
 fi
-source "$_brew_shellenv_cache"
-unset _brew_shellenv_cache
+if [[ -n "$_brew_bin" && ( ! -f "$_brew_shellenv_cache" || "$_brew_shellenv_cache" -ot "$_brew_bin" ) ]]; then
+  "$_brew_bin" shellenv zsh > "$_brew_shellenv_cache"
+fi
+if [[ -f "$_brew_shellenv_cache" ]]; then
+  source "$_brew_shellenv_cache"
+fi
+unset _brew_shellenv_cache _brew_bin
 
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
