@@ -2,13 +2,18 @@
 # 主题 {{{
 # brew shellenv 缓存：避免每次启动都执行 brew shellenv（约 2 秒）
 _brew_shellenv_cache="$HOME/.cache/brew-shellenv.zsh"
+# brew prefix 缓存：避免每次启动都执行 brew --prefix（用于 instant prompt 之前）
+_brew_prefix_cache="$HOME/.cache/brew-prefix.zsh"
 # 直接使用 brew 的标准路径，避免鸡生蛋问题（Apple Silicon: /opt/homebrew, Intel: /usr/local）
 if [[ -f /opt/homebrew/bin/brew ]]; then
   _brew_bin="/opt/homebrew/bin/brew"
+  _brew_prefix="/opt/homebrew"
 elif [[ -f /usr/local/bin/brew ]]; then
   _brew_bin="/usr/local/bin/brew"
+  _brew_prefix="/usr/local"
 else
   _brew_bin=""
+  _brew_prefix=""
 fi
 if [[ -n "$_brew_bin" && ( ! -f "$_brew_shellenv_cache" || "$_brew_shellenv_cache" -ot "$_brew_bin" ) ]]; then
   "$_brew_bin" shellenv zsh > "$_brew_shellenv_cache"
@@ -16,7 +21,14 @@ fi
 if [[ -f "$_brew_shellenv_cache" ]]; then
   source "$_brew_shellenv_cache"
 fi
-unset _brew_shellenv_cache _brew_bin
+# 导出 brew prefix 供后续使用
+if [[ -n "$_brew_prefix" ]]; then
+  export BREW_PREFIX="$_brew_prefix"
+else
+  # 兜底方案：如果无法确定路径，尝试调用一次（但这可能产生输出）
+  export BREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
+fi
+unset _brew_shellenv_cache _brew_prefix_cache _brew_bin _brew_prefix
 
 # ----------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -26,7 +38,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -143,7 +155,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # 插件管理 {{{
 # --------
 
-source $(brew --prefix)/opt/zinit/zinit.zsh
+source $BREW_PREFIX/opt/zinit/zinit.zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -313,12 +325,12 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 # source <(kubectl completion zsh)
 
 # git-extras 命令补全
-source $(brew --prefix)/share/git-extras/git-extras-completion.zsh
+source $BREW_PREFIX/share/git-extras/git-extras-completion.zsh
 # }}}
 
 # 插件配置 {{{
 # autojump {{{
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[ -f $BREW_PREFIX/etc/profile.d/autojump.sh ] && . $BREW_PREFIX/etc/profile.d/autojump.sh
 # }}}
 # percol {{{
 function exists { which $1 &> /dev/null }
