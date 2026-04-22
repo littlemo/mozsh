@@ -230,10 +230,7 @@ alias pure_nvim='nvim --noplugin -n -i NONE -u NONE'
 alias tm="tmux -2u a -t moore || tmux -2u new -s moore"
 
 # Claude code
-# 字节火山平台 API key (科研)
-export VOLC_API_KEY="b4ab719b-8a69-4aa4-9107-4e6eaccc3956"
-# 阿里百炼平台 API key
-export ALIYUN_API_KEY="sk-dd2cb337dae042699a3f8638d14e062e"
+# API keys are loaded from ~/.token (see secret/token)
 
 # Load ccm (Claude Code Model switcher) if available
 if [ -f ~/.bin/ccm ]; then
